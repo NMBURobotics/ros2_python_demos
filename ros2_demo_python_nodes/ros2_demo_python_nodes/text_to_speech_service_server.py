@@ -57,8 +57,7 @@ class ROS2Text2SpeechNode(rclpy.node.Node):
     def _speak_phrase_callback(self, req, res):
         self._play_phrase(req.phrase)
         res = Phrase_Response()
-        res.success = True
-        res.message = ('Added [{}] to buffer').format(req.phrase)
+        res.result = True
         return res
 
 
