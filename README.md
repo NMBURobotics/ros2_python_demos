@@ -29,13 +29,15 @@ source install/setup.bash
 ros2 launch ros2_demo_python_nodes start_topic_pub_sub.launch.py
 ```
 ### Additional depenedencies
-Some nodes might require installation of 3rd party libarires such as gTTS (for generating speech from text). You should be able to install them with pip3. 
+Some nodes might require installation of 3rd party libraries such as gTTS (for generating speech from text). 
+You should be able to install other dependencies them with `pip3` in case you get "no module XX found" errors. 
 
 ### Action and Service Nodes
 
-Under `ros2_demo_python_nodes/ros2_demo_python_nodes/text_to_speech_service_server.py`, We provide two service servers where a service call triggers server to generate speech. 
+Under `ros2_demo_python_nodes/ros2_demo_python_nodes/text_to_speech_service_server.py`, 
+We provide two **_service_** servers to generate speech. 
 
-Fo instance; 
+For instance; 
 
 In a terminal; 
 ```bash
@@ -51,20 +53,21 @@ source /opt/ros/foxy/setup.bash
 source install/setup.bash
 ros2 service call /speak_random std_srvs/srv/Trigger
 ```
-A randomly picked sentence (Loaded from `params.yaml`)with be played back 
+A randomly picked sentence (Loaded from `params.yaml`)will be played back.
 
 Or you can generate the speech for a specific sentence;
+
 ```bash
 source /opt/ros/foxy/setup.bash
 source install/setup.bash
 ros2 service call /speak_phrase ros2_demo_custom_msgs/srv/Phrase "{phrase: 'I will be Spoken'}"
 ```
 
-The action nodes could come up as scary if you are a beginner, It is suggested you get grasp of ROS Actions in order to test and understand `navigate_to_pose` action interface provided in `ros2_demo_python_nodes/ros2_demo_python_nodes/text_to_speech_service_server.py`.
+The **action** nodes might come up as scary if you are a beginner, It is suggested you get grasp of ROS Actions in order to test and understand `navigate_to_pose` action interface provided in `ros2_demo_python_nodes/ros2_demo_python_nodes/text_to_speech_service_server.py`.
 
-THe purpose of this action is to drive a robot to a certain pose (hence `navigate_to_pose`), I is required to you have a valid `tf` tree, either in `map` or `odom` frame, depending on your loclization setup you should modify `ros2_demo_python_nodes/ros2_demo_python_nodes/helpers.py` with correct frame id (either `map` or `odom`) in the `get_curr_robot_pose`
+THe purpose of this **action** node is to drive a robot to a certain pose (hence `navigate_to_pose`), It is required that you have a valid `tf` tree,  depending on your localization setup you should have either in `map` or `odom` frame to `base_link` transforms, modify `ros2_demo_python_nodes/ros2_demo_python_nodes/helpers.py` with correct frame id (either `map` or `odom`) in the `get_curr_robot_pose` function.
 
-To test the actions, source your workspace and do 
+To test the actions, source your workspace and do;
 
 ```bash
 ros2 launch ros2_demo_python_nodes start_nav2pose_action.launch.py
@@ -76,6 +79,6 @@ In a seperate terminal;
 ros2 run ros2_demo_python_nodes nav_to_pose_action_client
 ```
 
-For this to succeed, you do need a complete `tf` so that robot can know its current posistion and navigate itself towards the goal. You can change the goal poses in `ros2_demo_python_nodes/ros2_demo_python_nodes/nav_to_pose_action_client.py`
+For this to succeed, you do need a complete `tf` transfrom from `odom`/`map` to `base_link` so that robot can know its current position and navigate itself towards the goal. You can change the goal pose in `ros2_demo_python_nodes/ros2_demo_python_nodes/nav_to_pose_action_client.py` to send robot to differnt pose.
 
 
