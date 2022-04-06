@@ -44,7 +44,7 @@ class ROS2ActionServer(rclpy.node.Node):
 
         self.pub = self.create_publisher(
             msg_type=Twist,
-            topic="vox_nav/cmd_vel",
+            topic="cmd_vel",
             qos_profile=rclpy.qos.qos_profile_sensor_data)
 
         self.helpers = SimpleNavHelpers(node=self)
