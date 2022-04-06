@@ -1,0 +1,10 @@
+{
+    "python.autoComplete.extraPaths": [
+        "/opt/ros/foxy/lib/python3.8/dist-packages",
+        "/home/atas/ros2_ws/install/tel211_messages/lib/python3.8/site-packages/",
+    ],
+    "python.analysis.extraPaths": [
+        "/opt/ros/foxy/lib/python3.8/dist-packages",
+        "/home/atas/ros2_ws/install/tel211_messages/lib/python3.8/site-packages/",
+    ]
+}

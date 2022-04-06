@@ -1,0 +1,10 @@
+
+service_node:  
+  ros__parameters:
+    phrases: [ "Get out of my way!",
+               "I am the mightiest of all the robots",
+               "Honk, honk!",
+               "Blip, bloop, blip?",
+               "They call me the plywood wonder",
+               "Why did the robot cross the road? Because it was programmed to!",
+               "Destroy all hu... I mean, hello!"]

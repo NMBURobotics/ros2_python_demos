@@ -1,0 +1,5 @@
+#Request
+string phrase
+---
+#Response
+bool result
