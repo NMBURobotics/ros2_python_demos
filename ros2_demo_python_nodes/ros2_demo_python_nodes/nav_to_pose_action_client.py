@@ -47,14 +47,22 @@ class ROS2ActionClient(rclpy.node.Node):
 
         self.get_logger().info("%s" % str(goal.goal_pose))
 
-        self.action_client.send_goal(goal)
+        future = self.action_client.send_goal_async(goal)
 
 
 def main():
     rclpy.init()
     node = ROS2ActionClient()
 
-    node.test()
+    future = node.test()
+    while rclpy.ok() and not future.done():
+        rclpy.spin_once(node, timeout_sec=0.01)
+        node.get_logger().info("Wating for action to finish")
+
+    res = future.result()
+
+    node.get_logger().info("Result %s" % res.message)
+    node.get_logger().info("I am dying just now , bye!")
     rclpy.spin(node=node)
 
 
